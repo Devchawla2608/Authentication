@@ -7,7 +7,7 @@ const db = require('./config/mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport_local_strategy');
-const MongoStore = require('connect-mongo')(session);
+const MongoStore = require('connect-mongo');
 const User = require('./models/user');
 
 app.use(express.urlencoded({extended:true}));
@@ -27,16 +27,12 @@ app.use(session({
     cookie: {
         maxAge: (1000 * 60 * 100)
     },
-    store: new MongoStore(
-        {
-            mongooseConnection: db,
-            autoRemove: 'disabled'
-        
-        },
-        function(err){
-            console.log(err ||  'connect-mongodb setup ok');
-        }
-    )
+    store: MongoStore.create({
+        mongoUrl: 'mongodb://localhost:27017/contacts_list_db',
+        dbName: 'db',
+        autoRemove: 'disabled'
+      })
+
 }));
 
 app.use(passport.initialize());
