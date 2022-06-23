@@ -1,8 +1,9 @@
 const passport = require('passport');
 const express = require('express');
 const router = express.Router();
-const postController = require('../controllers/posts_controller');
+const commentController = require('../controllers/comments_controller');
 
-router.post('/create' ,passport.checkAuthentication, postController.create);
+router.post('/create' ,   commentController.create);
+// passport.checkAuthentication,
 console.log("Router is loaded");
 module.exports = router;

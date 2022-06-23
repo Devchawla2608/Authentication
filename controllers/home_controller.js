@@ -12,7 +12,9 @@ module.exports.home = function(req , res){
 // });
 
 // Name also 
+// This populate function complete fill all users data in user  we want to print name of person also 
 Post.find({}).populate('user').exec(function(err , posts){
+    console.log("I am DOne")
         return res.render('home' ,{
             title:"Codieal | Home ",
             posts: posts

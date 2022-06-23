@@ -45,7 +45,7 @@ module.exports.create = function(req , res){
                     console.log("There is an error ",err);
                     return;
                 }
-                console.log(newUser)
+                console.log("I am New User",newUser);
                 return res.redirect('/users/sign-in');
              });
     })
