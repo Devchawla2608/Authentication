@@ -1,36 +1,19 @@
 const User = require('../models/user');
 module.exports.signUp = function(req , res){
-    if(req.isAuthenticated()){
-       return res.redirect('/users/profile');
-    }
     return res.render('user-sign-up' ,{
         title:"Sign Up Page"
     });
 }
 module.exports.signIn = function(req , res){
-    if(req.isAuthenticated()){
-        return res.redirect('/users/profile');
-     }
     return res.render('user-sign-in' ,{
         title:"Sign In Page"
     });
 }
  // find mai bracess aate hai but is mai nahi 
 module.exports.profile = function(req , res){
-    if(req.cookies.user_id){
-        User.findById(req.cookies.user_id , function(err , user){
-            if(err){
-                console.log("Error in fetching contacts");
-                return
-            }
-            if(user){
-                return res.render('profile' , {
-                    title:"My Contact List",
-                    user : user
-                })
-        }
+    return res.render('profile' , {
+        title:"Profile page"
     })
-}
 }
 
 
@@ -93,7 +76,7 @@ module.exports.create = function(req , res){
 
 // sign in and create a session for the user
 module.exports.createSession = function(req, res){
-    return res.redirect('/');
+    return res.redirect('/users/profile');
 }
 
 module.exports.destroySession = function(req, res){

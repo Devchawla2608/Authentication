@@ -48,7 +48,8 @@ passport.use( new LocalStrategy({
     passport.setAuthenticatedUser = function(req ,res , next){
         if(req.isAuthenticated()){
             // req.user contains the current signed in user from the session cookie and we are just send for the local vies 
-            res.local.user = req.user;
+            console.log(req.user);
+            res.locals.user = req.user;
         }
         next();
     }
